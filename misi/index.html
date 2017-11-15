@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=640,user-scalable=no"/>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no"/>
+    <title>蜜丝佛陀</title>
+    <!-- <script src="js/vconsole.min.js"></script> -->
+    <script>
+        // window.vConsole = new window.VConsole({
+        //     defaultPlugins: ['system', 'network', 'element', 'storage'],
+        //     maxLogNumber: 1000
+        // });
+    </script>
+    <link rel="stylesheet" href="css/swiper.3.1.7.min.css">
+    <link rel="stylesheet" href="css/stylereset.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/index.css?a=23">
+    <link rel="stylesheet" href="http://go.163.com/2015/public/common/loading/loading.css">
+    <script src="js/swiper.3.1.7.min.js"></script>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.bxslider.js?v=1005"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?3f4f17ce293ece8bbe2cd66fd784354e";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+<style type="text/css">
+    .page4_lb ul {
+        position: relative;
+    }
+
+    #play {
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .arrow {
+        bottom: 20px;
+    }
+
+    .loding_bar {
+        overflow: auto !important;
+        width: 70%;
+        margin-left: -35%;
+        height: auto;
+        top: 35%;
+    }
+
+    .Js_loding_bar img {
+        display: none;
+        width: 100%;
+    }
+
+    .Js_loding_bar img:nth-child(1) {
+        display: block;
+    }
+
+    .page4_lbtd {
+        margin-top: 0px !important;
+    }
+
+    .brush {
+        position: absolute;
+        width: 44%;
+        top: 10%;
+        left: 65%;
+        display: none;
+    }
+
+    .tklmap p {
+        font-size: 25px;
+    }
+
+    .loading_txt {
+        position: absolute;
+        width: 100%;
+        bottom: 30%;
+        text-align: center;
+    }
+
+    #load_txt {
+        color: rgb(255, 255, 255);
+        font-weight: lighter;
+        margin-bottom: 0px;
+        font-family: Helvetica, STHeiti, Droid Sans Fallback;
+    }
+
+    #people img {
+        position: absolute;
+        width: 100%;
+    }
+
+    .tkl_close, .page4-tkl-close {
+        position: absolute;
+        left: 30px;
+        top: 50px;
+        display: none;
+    }
+
+    .tkl_close img, .page4-tkl-close img {
+        width: 100%;
+    }
+
+    .page4-tkl {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .page4_lbtd .nav-select {
+        border: 1px solid #ffffff !important;
+    }
+
+    .video-poster {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+    }
+
+    .fadeIn {
+        animation: fadeInAni 2s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeInAni {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    #tip {
+        display: none;
+    }
+
+    @media all and (orientation: landscape) {
+        .swiper-container, .loding_box {
+            opacity: 0;
+        }
+
+        #tip {
+            position: absolute;
+            display: block;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background: rgb(0, 0, 0);
+            z-index: 999;
+            text-align: center;
+        }
+
+        #tip img {
+            width: 20%;
+            margin-top: 15%;
+        }
+    }
+
+    @keyframes turn {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .turn {
+        animation: turn 2s infinite linear;
+    }
+
+    #music {
+        position: fixed;
+        top: 90px;
+        right: 5%;
+        width: 7%;
+        z-index: 999;
+        /*display: none;*/
+    }
+
+    #music img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+<script type="text/javascript">
+    //        var _hmt = _hmt || [];
+    var scale = window.innerWidth / 640
+
+    function addcss(cssText) {
+        var style = document.createElement('style'),
+            head = document.head || document.getElementsByTagName('head')[0];
+        style.type = 'text/css';
+        if (style.styleSheet) {
+            var func = function () {
+                try {
+                    style.styleSheet.cssText = cssText;
+                } catch (e) {
+
+                }
+            }
+            if (style.styleSheet.disabled) {
+                setTimeout(func, 10);
+            } else {
+                func();
+            }
+        } else {
+            var textNode = document.createTextNode(cssText);
+            style.appendChild(textNode);
+        }
+        head.appendChild(style);
+    }
+
+    addcss(".page-padding-top{padding-top:" + 66 * scale + "px}")
+    addcss(".zqq{top:" + 66 * scale + "px}")
+    addcss("#load_txt{font-size:" + 30 * scale + "px}")
+</script>
+<!--loading-->
+<div class="loding_box Js_loding_box" style="display: block;">
+    <div class="loding_bar Js_loding_bar">
+    </div>
+    <div class="loading_txt">
+        <div id="load_txt">0%</div>
+    </div>
+    <div class="loading_logo" style="position: absolute; bottom: 5%; text-align: center; width: 100%;">
+        <img src="images/loading-logo.png">
+    </div>
+</div>
+<style>
+    .small-slider li {
+        text-align: center;
+    }
+
+    .small-slider li img {
+        width: 90%
+    }
+
+    .page4_lb ul {
+        height: 495px;
+    }
+</style>
+<div class="swiper-container swiper-main">
+    <div class="swiper-wrapper">
+        <!-- page2 -->
+        <div class="swiper-slide page-padding-top" style="overflow-y: hidden;box-sizing: border-box;">
+            <div class="index_top">
+                <img src="images/top_img.jpg">
+            </div>
+            <!-- 玛丽莲动画 -->
+            <div id="people" style="width: 97%;">
+            </div>
+            <!-- sz -->
+            <div class="brush">
+                <img src="images/sz.png">
+            </div>
+            <div class="arrow" style="">
+                <img src="images/arrow.png">
+            </div>
+        </div>
+        <!-- page1 -->
+        <div class="swiper-slide">
+            <div class="page1" style="overflow-y: hidden;">
+                <!-- <div class="index_top">
+                    <img src="images/top_img.jpg">
+                </div> -->
+                <div class="page1-banner" style="height: 240px;margin-top: 0%;opacity: 0">
+                    <div class="page1-bannertxt1">
+                        <img src="images/page1_txt1.png">
+                    </div>
+                    <div class="page1-bannertxt2">
+                        <img src="images/page1_txt2.png">
+                    </div>
+                </div>
+                <div class="page1-con" style="height: 602px">
+                    <div class="person">
+                        <img src="images/page1.jpg">
+                    </div>
+                    <div class="arrow" style="bottom: -150px">
+                        <img src="images/arrow.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- page3 -->
+        <div class="swiper-slide">
+            <div class="page3-bg">
+                <!-- 视频 -->
+                <!-- x-webkit-airplay="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" -->
+                <img src="images/movie.jpg" class="video-poster">
+                <video id="play" preload="" width="640" src="video/v.mp4?v=10082" poster="" webkit-playsinline=""
+                       playsinline="" x5-video-player-type="h5" x5-video-player-fullscreen="true"></video>
+                <!-- 提示按钮 -->
+                <div class="tkl_pop" style="display: none;">
+                    <div class="tkl">
+                        <img src="images/tkl.png">
+                        <img src="images/tkl2.png">
+                    </div>
+                    <div class="arrow" style="">
+                        <img src="images/arrow.png">
+                    </div>
+                </div>
+                <!--淘口令码-->
+                <div class="tklma">
+                    <div class="tklmap">
+                        <p>
+                            您已自动复制淘口令<br/>
+                            <!-- 复制这条信息<span>￥5QXm04rJ7HT￥</span>后打开手机淘宝 -->
+                        </p>
+                        <p>
+                            请在手机淘宝APP中黏贴打开
+                        </p>
+                    </div>
+                </div>
+                <!-- 关闭按钮 -->
+                <div class="tkl_close" style="z-index: 999;">
+                    <img src="images/close_btn.png">
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide page-padding-top">
+            <img src="images/page4.jpg" class="img100">
+            <div class="arrow" style="bottom: 105px;">
+                <img src="images/arrow.png">
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="page4_lb">
+                <ul class="small-slider">
+                    <li class="slide">
+                        <img src="images/lb_img1.png" class="img100">
+                    </li>
+                    <li class="slide">
+                        <img src="images/v5/lb_img2.png" class="img100">
+                    </li>
+                    <li class="slide">
+                        <img src="images/v5/lb_img3.png" class="img100">
+                    </li>
+                    <li class="slide">
+                        <img src="images/v5/lb_img4.png" class="img100">
+                    </li>
+                </ul>
+                <div class="page4_lbbtn">
+                    <div class="page4_left">
+                        <img src="images/left_icon.png" id="left">
+                    </div>
+                    <div class="page4_right">
+                        <img src="images/right_icon.png" id="right">
+                    </div>
+                </div>
+                <div class="page4_lbtd">
+                    <div class="page4_lbtdz select nav-select" id="op1">
+                        <img src="images/td1.jpg">
+                    </div>
+                    <div class="page4_lbtdz" id="op2" style="border: 1px solid #313131">
+                        <img src="images/v5/td2.jpg">
+                    </div>
+                    <div class="page4_lbtdz" id="op3" style="border: 1px solid #313131">
+                        <img src="images/v5/td3.jpg">
+                    </div>
+                    <div class="page4_lbtdz" id="op4" style="border: 1px solid #313131">
+                        <img src="images/v5/td4.jpg">
+                    </div>
+                </div>
+                <div class="page4_lbtxt" style="height: 92px;">
+                    <img src="images/tm1.png">
+                    <img src="images/v5/tm2.png" style="display: none;">
+                    <img src="images/v5/tm3.png" style="display: none;">
+                    <img src="images/v5/tm4.png" style="display: none;">
+                </div>
+            </div>
+            <a style="margin: 28px auto; display: block; text-align: center;" class="statistics" id="btn">
+                <img src="images/a.now.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','天猫经典'])" style="width: 42%;"
+                     >
+            </a>
+            <!-- 1005增加淘口令 -->
+            <div class="page4-tkl" style="display: none;">
+                <!-- 提示按钮 -->
+                <div class="page4-tkl-pop">
+                    <div class="tkl">
+                        <img src="images/tkl.png">
+                        <img src="images/tkl2.png">
+                    </div>
+                </div>
+                <!--淘口令码-->
+                <div class="page4-tklma" style="display: none;">
+                    <div class="tklmap">
+                        <p>
+                            您已自动复制淘口令<br/>
+                            <!-- 复制这条信息<span>￥5QXm04rJ7HT￥</span>后打开手机淘宝 -->
+                        </p>
+                        <p>
+                            请在手机淘宝APP中黏贴打开
+                        </p>
+                    </div>
+                </div>
+                <!-- 关闭按钮 -->
+                <div class="page4-tkl-close" style="z-index: 999;display: block;">
+                    <img src="images/close_btn.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-scrollbar"></div>
+</div>
+<div id="music" class="turn">
+    <img src="images/music/music_on.png" class="on">
+    <img src="images/music/music_off.png" class="off" style="display: none;">
+</div>
+<div id="tip">
+    <img src="images/tip.png?v=10072">
+</div>
+<script src="js/index.js?v=10092"></script>
+<script src="js/jweixin-1.1.0.js"></script>
+<script src="js/weixin.js?v=10073"></script>
+<script>
+    var tkl = "【蜜丝佛陀官方旗舰店】，复制这条信息￥5QXm04rJ7HT￥后打开手机淘宝"
+    var bxslider = null;
+    var vObj = document.getElementById("play");
+    var aObj = document.createElement("audio");
+    var isRealPlay = false
+    var hasTouched = false
+    var resource = []
+    var videoduration = 71 * 1000
+    var unlockproduct = [0];
+    var hasBrushAni = false
+
+    // 闪烁按钮
+    function showBling() {
+        var i = 0;
+        setInterval(function () {
+            $(".tkl img").hide()
+            if (i % 2 == 0) {
+                var img = [0, 2]
+            } else {
+                var img = [1, 3]
+            }
+            i++;
+            for (var j in img) {
+                $(".tkl img").eq(img[j]).show()
+            }
+        }, 500)
+    }
+
+    // 定时显示淘口令
+    function playAndTkl(duration) {
+        // $(".video-poster").hide()
+        $("#play").show()
+        var t = setTimeout(function () {
+            console.log("pause")
+            vObj.pause()
+            if (isAndroid()) {
+                $("#play").hide();
+                $(".video-poster").show()
+            }
+            showTkl()
+            showBling()
+        }, videoduration)
+    }
+
+    function page1Ani() {
+        $(".page1-banner").addClass("fadeIn")
+    }
+
+    function brushAni() {
+        if (hasBrushAni) {
+            return;
+        }
+        hasBrushAni = true
+        var brushAni = [
+            ["10%", "25%"],
+            ["80%", "25%"],
+            ["10%", "40%"],
+            ["80%", "35%"],
+            ["10%", "60%"],
+        ];
+        $(".brush").css({left: "65%", top: "10%"});
+        var l = $("#people img").length
+        var i = 0
+        var ani = function () {
+            if ((i != 0) && (i != 6)) {
+                var j = i - 1
+                $(".brush").animate({left: brushAni[j][0], top: brushAni[j][1]}, 500, null, function () {
+                    $("#people img").eq(i).fadeIn()
+                    i++
+                })
+            }
+            if (i == 0) {
+                $("#people img").eq(i).fadeIn(null, null, function () {
+                    $(".brush").fadeIn();
+                })
+                i++
+            }
+            if (i == 6) {
+                $("#people img").eq(i).fadeIn()
+                $(".brush").fadeOut()
+                i++
+            }
+        }
+
+        var timer = setInterval(function () {
+            if (i == l) {
+                clearInterval(timer)
+                return;
+            }
+            ani();
+        }, 800)
+        ani();
+    }
+
+    function initAudio() {
+        aObj.src = "images/music/bg.mp3?v=1009"
+        aObj.loop = true
+        aObj.style.display = "none"
+        aObj.autoplay = true
+        aObj.manualPaused = false
+        aObj.onplay = function () {
+            $("#music").addClass("turn")
+            $("#music").find("img").show()
+            $("#music").find(".off").hide();
+        }
+        aObj.onpause = aObj.onended = function () {
+            $("#music").removeClass("turn")
+            $("#music").find("img").show()
+            $("#music").find(".on").hide();
+        }
+        $("#music").css({top: 90 * scale})
+        $("#music").click(function () {
+            if (aObj.paused) {
+                aObj.manualPaused = false
+                aObj.play()
+            } else {
+                aObj.manualPaused = true
+                aObj.pause()
+            }
+        })
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            aObj.play()
+        }, false)
+    }
+
+    function preLoading(img) {
+        var item = []
+        item["res"] = img
+        item["state"] = "loading"
+        resource.push(item)
+        img.onload = function () {
+            item["state"] = "ok"
+        }
+    }
+
+    $(function () {
+        // 音乐控制
+        initAudio()
+        // 淘口令按钮
+        showBling()
+        // 禁止滑动视频
+        $("#play").on("touchmove", function (e) {
+            e.preventDefault();
+            e.stopPropagation()
+        })
+        // 点击播放
+        $(".video-poster").click(function () {
+            isRealPlay = true
+            hasTouched = true
+            vObj.play();
+        })
+        // 增加轮播导航
+        $(".page4_lbtd .page4_lbtdz").each(function (i) {
+            $(this).click(function () {
+                bxslider.goToSlide(i)
+            })
+        })
+        // 增加关闭按钮
+        $(".tkl_close").css({height: 30 * scale, width: 30 * scale})
+        $(".tkl_close").click(function () {
+            $(".tkl_pop,.tklma,.tkl_close").hide()
+        })
+        $(".page4-tkl-close").css({height: 30 * scale, width: 30 * scale})
+        $(".page4-tkl-close").click(function () {
+            $(".page4-tkl").hide();
+        })
+        // 修改人物动画
+        for (var i = 1; i <= 7; i++) {
+            var img = document.createElement("img");
+            img.src = "images/people/monroe_" + i + ".jpg";
+            img.style.display = "none";
+            preLoading(img)
+            $("#people").append(img);
+        }
+        // 按钮跳转
+        $("#btn").click(function () {
+            var i = bxslider.getCurrentSlide();
+            console.log(i);
+            if (unlockproduct.indexOf(i) > -1) {
+                // 显示淘口令
+                $(".page4-tklma").hide();
+                $(".page4-tkl,.page4-tkl-pop").show()
+            } else {
+                location.href = "shop.html"
+            }
+        })
+        // 设置淘口令
+        $(".tkl").click(function () {
+            $(".tklma").show()
+        })
+        $(".page4-tkl-pop").click(function () {
+            $(this).hide();
+            $(".page4-tklma").show();
+        })
+        new Clipboard('.tkl', {
+            text: function (trigger) {
+                return tkl
+            }
+        });
+        new Clipboard('.tklma', {
+            text: function (trigger) {
+                return tkl
+            }
+        });
+        // 初始化轮播
+        bxslider = $('.small-slider').bxSlider({
+            controls: false,
+            pager: false,
+            nextText: "",
+            prevText: "",
+            onSlideAfter: function ($slideElement, oldIndex, newIndex) {
+                var html = '';
+                switch (newIndex) {
+                    case 0:
+                        html = `<img src="images/a.now.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','天猫经典'])" style="width: 42%;">`;
+                        break;
+                    case 1:
+                        html = `<img src="images/a.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','性感女神'])" style="width: 42%;" >`;
+                        break;
+                    case 2:
+                        html = `<img src="images/a.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','高冷艳后'])" style="width: 42%;">`;
+                        break;
+                    case 3:
+                        html = `<img src="images/a.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','永恒公主'])" style="width: 42%;" >`;
+                        break;
+                }
+                $('.statistics').html(html);
+                // 按钮
+                if (unlockproduct.indexOf(newIndex) > -1) {
+                    $("#btn").attr("src", "images/a.now.png")
+                } else {
+                    $("#btn").attr("src", "images/a.png");
+
+                }
+
+                // 底部文案
+                $(".page4_lbtxt img").hide();
+                $(".page4_lbtxt img").eq(newIndex).show();
+
+                // 选中框
+                $(".page4_lbtd .page4_lbtdz").removeClass("nav-select");
+                $(".page4_lbtd .page4_lbtdz").eq(newIndex).toggleClass("nav-select")
+            }
+        });
+        $("#right").click(function () {
+            bxslider.goToNextSlide()
+        })
+        $("#left").click(function () {
+            bxslider.goToPrevSlide()
+        })
+
+        $(".loding_bar img").size();
+
+        // loading
+        for (var i = 1; i <= 32; i++) {
+            var img = document.createElement("img")
+            img.src = "images/loading/" + i + ".png";
+            preLoading(img)
+            $(".Js_loding_bar").append(img);
+        }
+        $(".Js_loding_bar").css({height: $(".Js_loding_bar").width()})
+        var _loadingNum = 0;
+        var _loadingIntev;
+        var _loadingTime = 50;
+        _loadingIntev = setInterval(function () {
+            _loadingNum++
+            var index = _loadingNum % ($(".Js_loding_bar img").length)
+            $(".Js_loding_bar img").hide().eq(index).show();
+            var c = 0
+            for (var i in resource) {
+                if (resource[i]["state"] == "ok") {
+                    c++;
+                }
+            }
+            var per = parseInt(c / resource.length * 100)
+            $("#load_txt").html(per + "%")
+            if (per >= 98) {
+                clearInterval(_loadingIntev);
+                $(".Js_loding_box").fadeOut(null, null, function () {
+                    brushAni()
+                    // page1Ani()
+                })
+            }
+
+            // if (_loadingNum >= $(".Js_loding_bar img").length-1) {
+            //     clearInterval(_loadingIntev);
+            //     $(".Js_loding_box").fadeOut(null,null,function(){
+            //         page1Ani()
+            //     })
+            // }
+            // $("#load_txt").html(parseInt(_loadingNum/($(".Js_loding_bar img").length-1)*100)+"%")
+        }, _loadingTime);
+    });
+    document.addEventListener("WeixinJSBridgeReady", function () {
+        vObj.play()
+        vObj.pause()
+        // aObj.play()
+    }, false)
+
+    vObj.onplay = function () {
+        if (!isRealPlay) {
+            return;
+        }
+        isRealPlay = false
+        // 暂停音乐
+        aObj.pause();
+        $("#music").hide()
+        // 隐藏播放按钮
+        $(".video-poster").hide()
+        // 安卓提前结束
+        // if(!isAndroid()){
+        //     return;
+        // }
+        // console.log("video_prepare2")
+        // playAndTkl(videoduration-500);
+        // console.log("video_prepare_done")
+    }
+    // IOS末尾结束
+    vObj.onended = function () {
+        if (isAndroid()) {
+            // return;
+        }
+        showTkl()
+    }
+    vObj.onpause = function () {
+        // if(!aObj.manualPaused){
+        //     aObj.play()
+        // }
+    }
+</script>
+
+</body>
+</html>

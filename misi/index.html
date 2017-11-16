@@ -352,7 +352,7 @@
             <div class="page4_lb">
                 <ul class="small-slider">
                     <li class="slide">
-                        <img src="images/lb_img1.png" class="img100">
+                        <img src="images/v5/lb_img1.png" class="img100">
                     </li>
                     <li class="slide">
                         <img src="images/v5/lb_img2.png" class="img100">
@@ -374,7 +374,7 @@
                 </div>
                 <div class="page4_lbtd">
                     <div class="page4_lbtdz select nav-select" id="op1">
-                        <img src="images/td1.jpg">
+                        <img src="images/v5/td1.jpg">
                     </div>
                     <div class="page4_lbtdz" id="op2" style="border: 1px solid #313131">
                         <img src="images/v5/td2.jpg">
@@ -386,15 +386,15 @@
                         <img src="images/v5/td4.jpg">
                     </div>
                 </div>
-                <div class="page4_lbtxt" style="height: 92px;">
-                    <img src="images/tm1.png">
+                <div class="page4_lbtxt" style="height: 110px;">
+                    <img src="images/v5/tm1.png">
                     <img src="images/v5/tm2.png" style="display: none;">
                     <img src="images/v5/tm3.png" style="display: none;">
                     <img src="images/v5/tm4.png" style="display: none;">
                 </div>
             </div>
             <a style="margin: 28px auto; display: block; text-align: center;" class="statistics" id="btn">
-                <img src="images/a.now.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','天猫经典'])" style="width: 42%;"
+                <img src="images/a.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','天猫经典'])" style="width: 42%;"
                      >
             </a>
             <!-- 1005增加淘口令 -->
@@ -615,13 +615,15 @@
         // 按钮跳转
         $("#btn").click(function () {
             var i = bxslider.getCurrentSlide();
-            console.log(i);
-            if (unlockproduct.indexOf(i) > -1) {
+//            if (unlockproduct.indexOf(i) > -1) {
+            if(i == 3){
                 // 显示淘口令
                 $(".page4-tklma").hide();
                 $(".page4-tkl,.page4-tkl-pop").show()
-            } else {
-                location.href = "shop.html"
+            } else if(i == 0) {
+                location.href = "shop.html?about=1"
+            }else{
+                location.href = "shop.html?about=2"
             }
         })
         // 设置淘口令
@@ -652,16 +654,16 @@
                 var html = '';
                 switch (newIndex) {
                     case 0:
-                        html = `<img src="images/a.now.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','天猫经典'])" style="width: 42%;">`;
-                        break;
-                    case 1:
                         html = `<img src="images/a.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','性感女神'])" style="width: 42%;" >`;
                         break;
-                    case 2:
+                    case 1:
                         html = `<img src="images/a.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','高冷艳后'])" style="width: 42%;">`;
                         break;
-                    case 3:
+                    case 2:
                         html = `<img src="images/a.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','永恒公主'])" style="width: 42%;" >`;
+                        break;
+                    case 3:
+                        html = `<img src="images/a.now.png" onclick="_hmt.push(['_trackEvent','点击购买','购买','天猫经典'])" style="width: 42%;">`;
                         break;
                 }
                 $('.statistics').html(html);

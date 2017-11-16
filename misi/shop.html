@@ -129,7 +129,7 @@
             <!-- <div class="bg"></div> -->
             <div class="items">
                 <img src="images/shop/pic.png" class="ad-pic">
-                <img src="images/shop/txt.png?v=1005" class="ad-des">
+                <img src="images/v5/dream.png" class="ad-des">
             </div>
         </div>
         <!-- 宽度512px -->
@@ -175,7 +175,19 @@
 <script src="js/jweixin-1.1.0.js"></script>
 <script src="js/weixin.js?v=10073"></script>
 <script type="text/javascript">
-var scale = window.innerWidth/640
+    function GetQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    //改变图片字体
+    var _url = GetQueryString('about');
+    if(_url == 1){
+        $('.ad-des').attr('src','images/v5/dream.png')
+    }else{
+        $('.ad-des').attr('src','images/v5/else.png')
+    }
+var scale = window.innerWidth/640;
 var provinces = []
 var cities = []
 var shops = []
